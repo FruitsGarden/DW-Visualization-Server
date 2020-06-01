@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dw.mapper.UserConvertMapper" >
+  <resultMap id="BaseResultMap" type="com.dw.model.UserConvert" >
+    <result column="dt" property="dt" jdbcType="VARCHAR" />
+    <result column="uv_m_count" property="uvMCount" jdbcType="BIGINT" />
+    <result column="new_m_count" property="newMCount" jdbcType="BIGINT" />
+    <result column="new_m_ratio" property="newMRatio" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <select id="selectRecent7Day" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select dt,uv_m_count,new_m_count,new_m_ratio
+   from ads_user_convert_day
+   where dt &gt;= #{date} and dt &lt;= DATE_ADD(#{date}, INTERVAL 7 DAY);
+  </select>
+</mapper>

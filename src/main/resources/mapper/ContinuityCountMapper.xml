@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dw.mapper.ContinuityCountMapper" >
+  <resultMap id="BaseResultMap" type="com.dw.model.ContinuityCount" >
+    <result column="dt" property="dt" jdbcType="VARCHAR" />
+    <result column="wk_dt" property="wkDt" jdbcType="VARCHAR" />
+    <result column="continuity_count" property="continuityCount" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.dw.model.ContinuityCount" >
+    insert into ads_continuity_uv_count (dt, wk_dt, continuity_count
+      )
+    values (#{dt,jdbcType=VARCHAR}, #{wkDt,jdbcType=VARCHAR}, #{continuityCount,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dw.model.ContinuityCount" >
+    insert into ads_continuity_uv_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dt != null" >
+        dt,
+      </if>
+      <if test="wkDt != null" >
+        wk_dt,
+      </if>
+      <if test="continuityCount != null" >
+        continuity_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dt != null" >
+        #{dt,jdbcType=VARCHAR},
+      </if>
+      <if test="wkDt != null" >
+        #{wkDt,jdbcType=VARCHAR},
+      </if>
+      <if test="continuityCount != null" >
+        #{continuityCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

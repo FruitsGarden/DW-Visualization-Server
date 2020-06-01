@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dw.mapper.NewMidCountMapper" >
+  <resultMap id="BaseResultMap" type="com.dw.model.NewMidCount" >
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="new_mid_count" property="newMidCount" jdbcType="BIGINT" />
+  </resultMap>
+
+  <select id="selectRecent7Day" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select create_date,new_mid_count
+   from ads_new_mid_count
+   where create_date &gt;= #{thisEntryDate} and create_date &lt;= DATE_ADD(#{thisEntryDate}, INTERVAL 7 DAY);
+  </select>
+
+</mapper>

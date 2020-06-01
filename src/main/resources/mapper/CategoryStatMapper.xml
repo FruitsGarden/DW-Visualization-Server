@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dw.mapper.CategoryStatMapper" >
+  <resultMap id="BaseResultMap" type="com.dw.model.CategoryStat" >
+    <result column="tm_id" property="tmId" jdbcType="VARCHAR" />
+    <result column="category1_id" property="category1Id" jdbcType="VARCHAR" />
+    <result column="category1_name" property="category1Name" jdbcType="VARCHAR" />
+    <result column="buycount" property="buycount" jdbcType="BIGINT" />
+    <result column="buy_twice_last" property="buyTwiceLast" jdbcType="BIGINT" />
+    <result column="buy_twice_last_ratio" property="buyTwiceLastRatio" jdbcType="DECIMAL" />
+    <result column="buy_3times_last" property="buy3timesLast" jdbcType="BIGINT" />
+    <result column="buy_3times_last_ratio" property="buy3timesLastRatio" jdbcType="DECIMAL" />
+    <result column="stat_mn" property="statMn" jdbcType="VARCHAR" />
+    <result column="stat_date" property="statDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.dw.model.CategoryStat" >
+    insert into ads_sale_tm_category1_stat_mn (tm_id, category1_id, category1_name, 
+      buycount, buy_twice_last, buy_twice_last_ratio, 
+      buy_3times_last, buy_3times_last_ratio, stat_mn, 
+      stat_date)
+    values (#{tmId,jdbcType=VARCHAR}, #{category1Id,jdbcType=VARCHAR}, #{category1Name,jdbcType=VARCHAR}, 
+      #{buycount,jdbcType=BIGINT}, #{buyTwiceLast,jdbcType=BIGINT}, #{buyTwiceLastRatio,jdbcType=DECIMAL}, 
+      #{buy3timesLast,jdbcType=BIGINT}, #{buy3timesLastRatio,jdbcType=DECIMAL}, #{statMn,jdbcType=VARCHAR}, 
+      #{statDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dw.model.CategoryStat" >
+    insert into ads_sale_tm_category1_stat_mn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tmId != null" >
+        tm_id,
+      </if>
+      <if test="category1Id != null" >
+        category1_id,
+      </if>
+      <if test="category1Name != null" >
+        category1_name,
+      </if>
+      <if test="buycount != null" >
+        buycount,
+      </if>
+      <if test="buyTwiceLast != null" >
+        buy_twice_last,
+      </if>
+      <if test="buyTwiceLastRatio != null" >
+        buy_twice_last_ratio,
+      </if>
+      <if test="buy3timesLast != null" >
+        buy_3times_last,
+      </if>
+      <if test="buy3timesLastRatio != null" >
+        buy_3times_last_ratio,
+      </if>
+      <if test="statMn != null" >
+        stat_mn,
+      </if>
+      <if test="statDate != null" >
+        stat_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tmId != null" >
+        #{tmId,jdbcType=VARCHAR},
+      </if>
+      <if test="category1Id != null" >
+        #{category1Id,jdbcType=VARCHAR},
+      </if>
+      <if test="category1Name != null" >
+        #{category1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="buycount != null" >
+        #{buycount,jdbcType=BIGINT},
+      </if>
+      <if test="buyTwiceLast != null" >
+        #{buyTwiceLast,jdbcType=BIGINT},
+      </if>
+      <if test="buyTwiceLastRatio != null" >
+        #{buyTwiceLastRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="buy3timesLast != null" >
+        #{buy3timesLast,jdbcType=BIGINT},
+      </if>
+      <if test="buy3timesLastRatio != null" >
+        #{buy3timesLastRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="statMn != null" >
+        #{statMn,jdbcType=VARCHAR},
+      </if>
+      <if test="statDate != null" >
+        #{statDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
